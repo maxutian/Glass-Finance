@@ -1,11 +1,23 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "noImplicitAny": true,
     "module": "es6",
     "target": "es5",
     "allowJs": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "paths": {
+      "pages/*": ["pages/*"],
+      "components/*": ["components/*"],
+      "utils/*": ["utils/*"],
+      "icons/*": ["./static/icons/*"]
+    }
   },
+  "include": ["./src/*", "./static/icons/*", "./custom.d.ts"],
+  "exclude": ["./node_modules/*/**"],
   "files": ["src/index.tsx"]
 }

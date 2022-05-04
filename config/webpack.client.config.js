@@ -6,7 +6,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const isProduction = process.env.NODE_ENV == 'production';
 
 const stylesHandler = 'style-loader';
-console.log(__dirname);
 
 const config = {
   entry: path.join(__dirname, '../src'),
@@ -41,7 +40,12 @@ const config = {
         use: [stylesHandler, 'css-loader', 'postcss-loader'],
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: ['@svgr/webpack'],
+      },
+      {
+        test: /\.(eot|ttf|woff|woff2|png|jpg|gif)$/i,
         type: 'asset',
       },
 
@@ -51,6 +55,12 @@ const config = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      pages: path.resolve(__dirname, '../src/pages'),
+      components: path.resolve(__dirname, '../src/components'),
+      utils: path.resolve(__dirname, '../src/utils'),
+      icons: path.resolve(__dirname, '../static/icons'),
+    },
   },
 };
 
